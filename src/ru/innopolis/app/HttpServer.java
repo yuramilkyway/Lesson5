@@ -56,6 +56,7 @@ public class HttpServer {
     private String writeDirectory(File dir) {
         final StringBuilder stringBuilder = new StringBuilder();
         final File[] files = dir.listFiles();
+        assert files != null;
         for (File file : files) {
             stringBuilder
                     .append("<pre>")
@@ -84,10 +85,6 @@ public class HttpServer {
      * @return - возвращает табуляцию
      */
     private String indent() {
-        final StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 0; i < nestingLevel; i++) {
-            stringBuilder.append("\t");
-        }
-        return stringBuilder.toString();
+        return "\t".repeat(Math.max(0, nestingLevel));
     }
 }
